@@ -22,7 +22,8 @@ FROM nginx:alpine
 # Copy the built React app from the build stage to the nginx web server directory
 COPY --from=build /app/build /usr/share/nginx/html
 
-# Expose port 80 (default port for HTTP)
-EXPOSE 80
+# Copy nginx configuration file
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# The default command for the nginx image starts the nginx server, so no need to specify it here
+# Expose port 3000 (default port for React app)
+EXPOSE 3000
